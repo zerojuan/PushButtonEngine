@@ -26,7 +26,8 @@ package com.pblabs.engine.debug
     import com.pblabs.engine.PBE;
     import com.pblabs.engine.core.IPBContext;
     import com.pblabs.engine.pb_internal;
-    import com.pblabs.engine.time.ProcessManager;
+	import com.pblabs.engine.time.IProcessManager;
+	import com.pblabs.engine.time.ProcessManager;
     
     import flash.display.Bitmap;
     import flash.display.BitmapData;
@@ -51,7 +52,7 @@ package com.pblabs.engine.debug
         }
         
         [Inject]
-        public var processManager:ProcessManager
+        public var processManager:IProcessManager
         
         private var timer:int, ms:int, msPrev:int = 0;
         
@@ -120,7 +121,7 @@ package com.pblabs.engine.debug
             addEventListener(MouseEvent.CLICK, onClick);
             addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
             addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-            processManager.timer.addEventListener(TimerEvent.TIMER, update);
+            (processManager as ProcessManager).timer.addEventListener(TimerEvent.TIMER, update);
             
             fpsTimes.length = 15;
             
