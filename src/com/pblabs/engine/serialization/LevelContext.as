@@ -33,7 +33,10 @@ package com.pblabs.engine.serialization
             super.initializeManagers();
             
             // Get our own template manager, separate from game.
-            registerManager(TemplateManager, new TemplateManager());
+            if (!templateManager)
+            {
+	            registerManager(TemplateManager, new TemplateManager());
+            }
             
             // After this function completes we get injected with our own injector.
         }
