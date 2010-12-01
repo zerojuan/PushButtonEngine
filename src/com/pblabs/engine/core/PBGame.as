@@ -25,6 +25,7 @@ package com.pblabs.engine.core
             // Bring in the standard managers.
             var pm:ProcessManager = new ProcessManager();
             registerManager(IProcessManager, pm);
+            registerManager(ProcessManager, pm);
             
             registerManager(Serializer, new Serializer);
             registerManager(InputManager, new InputManager());
