@@ -282,7 +282,7 @@ package com.pblabs.box2D
             return hitAny;
         }
         
-        private function createWorld():void
+        protected function createWorld():void
         {
             var bounds:b2AABB = new b2AABB();
             bounds.lowerBound.Set(_worldBounds.x / _scale, _worldBounds.y / _scale);

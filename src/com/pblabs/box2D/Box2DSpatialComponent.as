@@ -15,6 +15,7 @@ package com.pblabs.box2D
     import Box2D.Dynamics.b2BodyDef;
     
     import com.pblabs.engine.PBUtil;
+    import com.pblabs.engine.components.TickedComponent;
     import com.pblabs.engine.core.ObjectType;
     import com.pblabs.engine.debug.Logger;
     import com.pblabs.engine.entity.EntityComponent;
@@ -34,7 +35,7 @@ package com.pblabs.box2D
      * your questions about this component will really be Box2D questions in
      * disguise.</p> 
      */
-    public class Box2DSpatialComponent extends EntityComponent implements IMobileSpatialObject2D
+    public class Box2DSpatialComponent extends TickedComponent implements IMobileSpatialObject2D
     {
 		[EditorData(ignore="true")]
         public var onAddedCallback:Function = null;
@@ -380,12 +381,16 @@ package com.pblabs.box2D
                     if (onAddedCallback != null)
                         onAddedCallback(this);
                 });
+            
+            super.onAdd();
         }
         
         override protected function onRemove():void 
         {
             _manager.remove(_body);
             _body = null;
+            
+            super.onRemove();
         }
         
         private var _manager:Box2DManagerComponent = null;
