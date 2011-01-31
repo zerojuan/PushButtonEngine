@@ -188,8 +188,15 @@ package com.pblabs.rendering2D
                 }
                 else
                 {
-                    if (curFrame >= _currentAnimation.spriteSheet.frameCount)
+
+                    
+                    if (curFrame >= _currentAnimation.spriteSheet.frameCount){
+                        if (_currentAnimation.completeEvent)
+                        {
+                            this.owner.eventDispatcher.dispatchEvent(new Event(_currentAnimation.completeEvent));
+                        }
                         curFrame = _currentAnimation.spriteSheet.frameCount - 1;
+                    }
                 }
             }
 
